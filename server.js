@@ -127,6 +127,11 @@ server.use('/icons', express.static(__dirname + '/icons'));
 server.use(router)
 
 
-server.listen(8000, () => {
-  console.log('Run Auth API Server')
+// server.listen(8000, () => {
+//   console.log('Run Auth API Server')
+// })
+
+const PORT = process.env.PORT || 8000;
+server.listen(PORT, () => {
+    console.log('JSON Server AUTH is running')
 })
