@@ -1566,7 +1566,7 @@
     {
       "id": "7d4b325d-626e-4c59-8738-3933f9d07ddc",
       "userId": "8f2fefa7-80bf-4bcb-83d4-9844bec52ea0",
-      "cartByUserId": [
+      "listItemInCartByUserId": [
         {
           "id": "e9e302a5-79b4-4da8-a9d2-ba716e059c22",
           "amount": 1,
