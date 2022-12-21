@@ -2,13 +2,13 @@
     "users": [
         {
             "id": 1,
-            "email": "huynh@email.com",
+            "email": "huynh@gmail.com",
             "username": "Kieu Huynh",
             "password": "huynh1"
         },
         {
             "id": 2,
-            "email": "1@email.com",
+            "email": "1@gmail.com",
             "username": "User 1",
             "password": "123456"
         }

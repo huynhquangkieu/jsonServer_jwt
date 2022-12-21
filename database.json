@@ -1574,6 +1574,18 @@
           "size": "XL"
         }
       ]
+    },
+    {
+      "id": "ab5236cf-1aff-4ab4-8da4-a100808ebf31",
+      "userId": 1,
+      "listItemInCartByUserId": [
+        {
+          "id": "b26c4161-b19d-4849-a9b3-fa40d436acba",
+          "amount": 123,
+          "color": "Red",
+          "size": "M"
+        }
+      ]
     }
   ]
 }

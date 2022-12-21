@@ -99,7 +99,7 @@ server.post('/auth/login', (req, res) => {
   res.status(200).json({ access_token, "userInfo": { "username": userJustLogin.username, email, "id": userJustLogin.id } })
 })
 
-server.use(/^\/carts.*$/, (req, res, next) => {
+server.use(/^\/carts\/[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/, (req, res, next) => {
   if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
     const status = 401
     const message = 'Error in authorization format'
