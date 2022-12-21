@@ -27,9 +27,14 @@ function verifyToken(token) {
   return jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ? decode : err)
 }
 
-// Check if the user exists in database
+// Check if the user has auth in database
 function isAuthenticated({ email, password }) {
   return userdb.users.findIndex(user => user.email === email && user.password === password) !== -1
+}
+
+// Check if the user exists in database
+function isExistedUser({ email, password }) {
+  return userdb.users.findIndex(user => user.email === email) !== -1
 }
 
 // Register New User
@@ -39,7 +44,7 @@ server.post('/auth/register', (req, res) => {
   const { email, password, username } = req.body;
   const userIdWhenCreated = uuidv4();
 
-  if (isAuthenticated({ email, password }) === true) {
+  if (isExistedUser({ email, password }) === true) {
     const status = 401;
     const message = 'User already exist!';
     res.status(status).json({ status, message });
