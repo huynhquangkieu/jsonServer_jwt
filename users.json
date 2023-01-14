@@ -7,9 +7,9 @@
             "password": "huynh1"
         },
         {
-            "id": 2,
-            "email": "1@gmail.com",
-            "username": "User 1",
+            "id": "7b6b24e9-103c-4cec-9050-47639a850de1",
+            "email": "2@gmail.com",
+            "username": "User 2",
             "password": "123456"
         }
     ]

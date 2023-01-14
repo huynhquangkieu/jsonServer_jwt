@@ -11,7 +11,7 @@ let userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
 
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
-server.use(jsonServer.defaults());
+server.use(jsonServer.defaults({ noCors: true }));
 
 const SECRET_KEY = '123456789'
 
