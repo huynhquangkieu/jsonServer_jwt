@@ -8,10 +8,11 @@ const { v4: uuidv4 } = require('uuid');
 const server = jsonServer.create()
 const router = jsonServer.router('./database.json')
 let userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'))
+console.log("🚀 ~ file: server.js:11 ~ userdb", userdb)
 
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
-server.use(jsonServer.defaults({ noCors: true }));
+server.use(jsonServer.defaults());
 
 const SECRET_KEY = '123456789'
 
@@ -61,6 +62,7 @@ server.post('/auth/register', (req, res) => {
 
     // Get current users data
     var data = JSON.parse(data.toString());
+    console.log("data user:", data)
 
     // Get the id of last user
     // var last_item_id = data.users[data.users.length - 1].id;
@@ -102,6 +104,84 @@ server.post('/auth/login', (req, res) => {
   const userJustLogin = userdb.users.find(user => user.email === email && user.password === password);
   console.log("🚀 ~ file: server.js:98 ~ server.post ~ userJustLogin", userJustLogin)
   res.status(200).json({ access_token, "userInfo": { "username": userJustLogin.username, email, "id": userJustLogin.id } })
+})
+
+
+// Save user login by social to users.json 
+server.post('/auth/social', (req, res) => {
+  console.log('save user login by social');
+  console.log(req.body);
+  const { email, username, password } = req.body;
+  const userIdWhenSave = uuidv4();
+  var manExistedUser;
+
+  fs.readFile("./users.json", (err, data) => {
+    if (err) {
+      const status = 401
+      const message = err + 'Error reading users.json'
+      res.status(status).json({ status, message })
+      return
+    };
+
+    // Get current users data
+    var data = JSON.parse(data.toString());
+    console.log("data user:", data)
+
+    // Check if social account has existed or not
+    const isExisted = isExistedUser({ email, password });
+    if (isExisted === true) {
+      const status = 401;
+      const message = 'Account social has existed! | Updating password';
+      const existedUser = data.users.find(user => user.email === email);
+      console.log("🚀 ~ file: server.js:133 ~ fs.readFile ~ existedUser", existedUser)
+
+      manExistedUser = Object.assign({}, existedUser);
+
+      const existedUserIndex = data.users.indexOf(existedUser)
+      console.log("🚀 ~ file: server.js:136 ~ fs.readFile ~ existedUserIndex", existedUserIndex)
+
+      data.users[existedUserIndex].password = password;
+      console.log('data after modifine', data)
+
+      // res.status(status).json({ status, message, data, existedUser, existedUserIndex });
+      // return
+
+      res.json({ ...manExistedUser, isExistedUser: isExisted })
+
+    } else {
+      data.users.push({ id: userIdWhenSave, email: email, username: username, password: password })
+      console.log("🚀 ~ file: server.js:148 ~ fs.readFile ~ userIdWhenSave PUSHHHH>>>", userIdWhenSave)
+      console.log('data after add new social account', data)
+
+      res.json({ id: userIdWhenSave, email: email, username: username, password: password })
+
+    }
+
+
+    // data.users.push({ id: userIdWhenCreated, email: email, username: username, password: password }); //add some data
+    var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
+      if (err) {
+        const status = 401
+        const message = err + "Error while write new data"
+        res.status(status).json({ status, message })
+        return
+      }
+      userdb = JSON.parse(fs.readFileSync('./users.json', 'UTF-8'));
+
+      // const userJustSave - userdb
+
+      // res.json({ id: userIdWhenSave, email: email, username: username, password: password, isExistedUser: isExisted })
+      // res.json({ ...manExistedUser, isExistedUser: isExisted })
+      // console.log("🚀 ~ file: server.js:166 ~ writeData ~ userIdWhenSave", userIdWhenSave)
+      // return
+    });
+
+
+  });
+
+
+
+
 })
 
 // server.use(/^\/carts\/[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/, (req, res, next) => {

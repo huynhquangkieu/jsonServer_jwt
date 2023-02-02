@@ -1566,7 +1566,43 @@
     {
       "id": "ab5236cf-1aff-4ab4-8da4-a100808ebf31",
       "userId": 1,
-      "listItemInCartByUserId": []
+      "listItemInCartByUserId": [
+        {
+          "id": "452eecfd-dea9-4b06-9d78-2ee7760d78df",
+          "amount": 6,
+          "color": "#f5ae5a",
+          "size": "XL",
+          "price": 27.25
+        },
+        {
+          "id": "8e7a9bb9-1fd0-448d-a57b-53c2b21fe6da",
+          "amount": 1,
+          "color": "#f5ae5a",
+          "size": "XL",
+          "price": 27.25
+        },
+        {
+          "id": "863a53af-8e58-4b26-83e7-2b1efae3eff3",
+          "amount": 1,
+          "color": "#f5ae5a",
+          "size": "XL",
+          "price": 42.29
+        },
+        {
+          "id": "99c7d7fe-5e75-4c17-8f26-ea2266148f03",
+          "amount": 7,
+          "color": "#f5ae5a",
+          "size": "XL",
+          "price": 42.29
+        },
+        {
+          "id": "e9e302a5-79b4-4da8-a9d2-ba716e059c22",
+          "amount": 5,
+          "color": "#f5ae5a",
+          "size": "XL",
+          "price": 27.56
+        }
+      ]
     },
     {
       "id": "c9ec87e3-fb7d-47b1-9327-74275347db30",
@@ -1601,10 +1637,10 @@
       "id": "111",
       "userId": 1,
       "listItemInWishListByUserId": [
-        "a28dd025-9a06-4676-a353-1f2446cb66d7",
-        "1af91b90-36e3-4576-aecd-f7fe854282c5",
-        "01f15393-3629-4a2f-b77b-fd0111dd93e9",
-        "47bee997-0b48-4185-9588-53681ba4e39b"
+        "acfe10fd-4743-4b6c-ba1f-33d196465e86",
+        "99c7d7fe-5e75-4c17-8f26-ea2266148f03",
+        "b26c4161-b19d-4849-a9b3-fa40d436acba",
+        "01f15393-3629-4a2f-b77b-fd0111dd93e9"
       ]
     },
     {
